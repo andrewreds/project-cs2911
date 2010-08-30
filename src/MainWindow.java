@@ -12,7 +12,7 @@ public class MainWindow {
 		Maze maze = new Maze ();
 		
 		
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("The Ultimate maze game...");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(maze, BorderLayout.CENTER);
 		frame.add(buttonPanel, BorderLayout.SOUTH);
