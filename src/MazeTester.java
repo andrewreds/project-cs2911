@@ -1,3 +1,10 @@
+//classes to add:
+//MazeDrawer
+//Cell
+//MazeObject
+//Player
+//PlayerTail
+
 
 public class MazeTester {
 

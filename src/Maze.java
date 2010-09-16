@@ -23,9 +23,8 @@ public class Maze extends JPanel  {
 		
 		double wStep = (double) ((getWidth()-boarder*2)) / width;
 		double hStep = (double) ((getHeight()-boarder*2)) / height;
-		
-		System.out.println (wStep);
-		
+				
+		// TODO: make maze re-center
 		//draw walls
 		for (int i = 0; i <= width; i++) {
 			for (int j = 0; j <= height; j++) {
@@ -91,6 +90,7 @@ public class Maze extends JPanel  {
 	private int boarder = 5;
 	private int goalSize = 4;
 	
+	//TODO: change to array of cells with a bottom and left wall
 	private boolean [] [] verticalWalls;
 	private boolean [] [] horizontalWalls;
 }

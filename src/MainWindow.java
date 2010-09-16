@@ -7,10 +7,12 @@ public class MainWindow {
 		JButton generateButton = new JButton ("Generate");
 		JButton sovleButton = new JButton ("Solve");
 		JButton sizeButton = new JButton ("Change Size");
+		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(generateButton);
 		buttonPanel.add(sovleButton);
 		buttonPanel.add(sizeButton);
+		
 		Maze maze = new Maze ();
 		
 		
