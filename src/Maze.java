@@ -1,96 +1,85 @@
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.util.Random;
+import java.util.Stack;
 
-import javax.swing.*;
-
-public class Maze extends JPanel  {
+public class Maze {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5386529132944306261L;
 
-	public Maze() {
-		resizeMaze (50,25);
-	}
-	
-	public Dimension getPreferredSize() {
-        return new Dimension(width*20+boarder*2,height*20+boarder*2);
-    }
-	
-	public void paintComponent(Graphics grap) {
-		Graphics2D g = (Graphics2D) grap;
+	public Maze(long seed,int width, int height) {
+		this.width = ++width;
+		this.height = ++height;
 		
-		double wStep = (double) ((getWidth()-boarder*2)) / width;
-		double hStep = (double) ((getHeight()-boarder*2)) / height;
-				
-		// TODO: make maze re-center
-		//draw walls
-		for (int i = 0; i <= width; i++) {
-			for (int j = 0; j <= height; j++) {
-				if (verticalWalls[i][j]&&j<height){
-					g.drawLine((int) (i*wStep+boarder),(int) (j*hStep+boarder),
-							(int) (i*wStep+boarder),(int) ((j+1)*hStep+boarder));
-				}
-				if (horizontalWalls[i][j]&&i<width){
-					g.drawLine((int) (i*wStep+boarder), (int) (j*hStep+boarder),
-							(int) ((i+1)*wStep+boarder), (int) (j*hStep+boarder));
-				}
+		map = new Cell [width][height];
+		
+		//create the array
+		for (int x=0; x<width;x++) {
+			for (int y=0; y<height; y++) {
+				map [x][y] = new Cell();
+				map [x][y].setState (Cell.UN_TOUCHED);
 			}
 		}
 		
-		//draw start and end gates
-		g.drawRect((int) (startX*wStep-goalSize+boarder), (int) (startY*hStep-goalSize+boarder),
-				goalSize*2, goalSize*2);
-		g.drawRect((int) (endX*wStep-goalSize+boarder), (int) (endY*hStep-goalSize+boarder),
-				goalSize*2, goalSize*2);
+		//TODO: add walls here
 		
-	}
-	
-	public void resizeMaze (int x, int y) {
-		//reset the current arrays
-		verticalWalls = new boolean [x+1][y+1];
-		horizontalWalls = new boolean [x+1][y+1];
+		//dig put the maze
+		//this algrothim should work, I will test it when a wall&cell&drawMaze are actualy implemented :)
+		int order[] = {0,1,2,3};
+		Random rand =  new Random (seed);
 		
-		width = x;
-		height = y;
+		Stack<Cell> stk = new Stack<Cell> ();
+		stk.push(map[0][0]);
 		
-		//create default maze pattern
-		for (int i = 0;i <= x; i++) {
-			for (int j = 0; j <= y; j++) {
-				verticalWalls[i][j] = true;
-				horizontalWalls[i][j] = false;
-				if ((j == 0&&i%2==0)||(j==(y-1)&&i%2==1)) {
-					verticalWalls[i][j] = false;
-				}
-				if (j == 0||j == y) {
-					horizontalWalls[i][j] = true;
+		while (!stk.isEmpty()){
+			Cell current = stk.pop();
+			
+			current.setState(Cell.TOUCHED);
+			
+			randomise (rand, order);
+			
+			boolean found = false;
+			int dir = 0;
+			while (dir<4 && !found) {
+				Cell nextCell = current.getCellInDir (order[dir]);
+				if (nextCell!=null && nextCell.isState(Cell.UN_TOUCHED)) {
+					//found our next victim
+					found = true;
+					stk.push (current);
+					stk.push (nextCell);
+					current.hideWall (nextCell);
 				}
 			}
 		}
-		
-		startX = 0;
-		startY = 0.5;
-		endX = x;
-		if (x%2==0){
-			endY = 0.5;
-		} else {
-			endY = y-0.5;
-		}
-		
 	}
 	
-	private int width;
-	private int height;
-	private double startX;
-	private double startY;
-	private double endX;
-	private double endY;
 	
-	private int boarder = 5;
-	private int goalSize = 4;
+	private void randomise(Random rand, int[] order) {
+		for (int i=0; i<10; i++) {
+			//find two random locations
+			int a = rand.nextInt(order.length-1);
+			int b = rand.nextInt(order.length-1);
+			
+			// swap them
+			int temp = order[a];
+			order[a] = order[b];
+			order[b] = temp;
+		}
+	}
+
+
+	public Cell [] [] getCells () {
+		return map;
+	}
 	
-	//TODO: change to array of cells with a bottom and left wall
-	private boolean [] [] verticalWalls;
-	private boolean [] [] horizontalWalls;
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	private Cell [] [] map;
+	private int width = 0;
+	private int height = 0;
 }

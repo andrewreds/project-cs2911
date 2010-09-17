@@ -13,12 +13,13 @@ public class MainWindow {
 		buttonPanel.add(sovleButton);
 		buttonPanel.add(sizeButton);
 		
-		Maze maze = new Maze ();
+		Maze maze = new Maze(123456,15,10);
+		MazeDrawer mazeD = new MazeDrawer (maze);
 		
 		
 		JFrame frame = new JFrame("The Ultimate maze game...");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(maze, BorderLayout.CENTER);
+		frame.add(mazeD, BorderLayout.CENTER);
 		frame.add(buttonPanel, BorderLayout.SOUTH);
 		
 		frame.pack();

@@ -1,6 +1,7 @@
 //classes to add:
 //MazeDrawer
 //Cell
+//Wall
 //MazeObject
 //Player
 //PlayerTail
