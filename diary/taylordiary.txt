@@ -1,0 +1,13 @@
+Th 2010-09-16
+
+We meet to dicuss the various ideas for the project and decided on a class structure for the maze which I have been assigned to make as soon as possible. This class structure will include:
+
+Maze - The maze constructure and container class
+Cell - A class that contains the walls of a cell
+Wall - The walls of a cell
+Player - A player is an object that can travel 
+PlayerTail - A recording of a the path followed by the player
+
+Mon 2010-09-20
+
+We worked further on some of the design by creating a class diagram for the for the Maze objects, etc.
