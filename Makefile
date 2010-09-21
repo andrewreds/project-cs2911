@@ -9,6 +9,7 @@ MASTER = MazeTester.java
 JC = javac
 JFLAGS = -j
 DOCC = javadoc
+DOCDIR = doc
 TESTER = echo "There is no tester implemented"
 PACKC = tar
 PACKFLAGS = -zcf $(TGZ)
