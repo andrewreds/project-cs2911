@@ -40,7 +40,7 @@ public class Wall {
         } else if (child == aCell && parent != null) {
             return parent;
         } else {
-            throw CannotFindCellException;
+            throw new CannotFindCellException();
         }
     }
     /**

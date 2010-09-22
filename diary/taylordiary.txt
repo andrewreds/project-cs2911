@@ -11,3 +11,7 @@ PlayerTail - A recording of a the path followed by the player
 Mon 2010-09-20
 
 We worked further on some of the design by creating a class diagram for the for the Maze objects, etc.
+
+Wed 2010-09-22
+
+Me and Esther meet up to finish off the Maze Class files and managed to get a compiling version working.
