@@ -47,4 +47,6 @@ public class Maze {
     }
     // Privates
     private Cell cells[][];
+    private Cell start;
+    private Cell finish;
 }

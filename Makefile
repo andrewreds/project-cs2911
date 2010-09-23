@@ -38,10 +38,10 @@ rmdoc:
 	rm -fdr $(DOCDIR)
 
 clobber: rmdoc clean
-	rm -f ass1.tgz
+	rm -f $(TGZ)
 
-submit: ass1.tgz
-	yes yes | give cs2911 ass1 ass1.tgz
+submit: $(TGZ)
+	yes yes | give cs2911 ass3 $(TGZ)
 
 test:
 	$(TESTER)

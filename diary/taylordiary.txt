@@ -15,3 +15,7 @@ We worked further on some of the design by creating a class diagram for the for 
 Wed 2010-09-22
 
 Me and Esther meet up to finish off the Maze Class files and managed to get a compiling version working.
+
+Thu 2010-09-23
+
+We have decided that for next week Esther and I will try and implement a player, a path, and Andrew will try and get a GUI working. We will also try and make a working version by next Thursday
